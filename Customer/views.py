@@ -95,7 +95,7 @@ class Order(View):
             item_ids.append(item['id'])
 
 
-        order = OrderModel.objects.create(price=price, name=name, address=address, email=email, contact=contact,payment=pay)
+        order = OrderModel.objects.create( name=name,price=0, address=address, email=email, contact=contact,payment=pay)
         order.items.add(*item_ids)
 
         context = {
