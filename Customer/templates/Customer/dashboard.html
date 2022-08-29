@@ -13,9 +13,9 @@
                             <th scope="col">Email</th>
                             <th scope="col">Address</th>
                             <th scope="col">Contact</th>
-
-
                             <th scope="col">Paid?</th>
+                            <th scope="col">Delivered?</th>
+
                         </tr>
                     </thead>
 
@@ -30,14 +30,25 @@
                             <td>{{ order.contact }}</td>
 
 
-                            <td>
-                                {% if order.payment %}
-                                <i style="color: green;" class="fas fa-check"></i>
-                                {% else %}
-                                <i style="color: red;" class="fas fa-times"></i>
-                                {% endif %}
+       <td>
+      {% if order.payment %}
+       <i style="color: green;" class="fas fa-check"></i>
+      {% else %}
+      <i style="color: red;" class="fas fa-times"></i>
+      {% endif %}
+                             </td>
+<td>
+      {% if order.delivered %}
+       <i style="color: green;" class="fas fa-check"></i>
+      {% else %}
+      <i style="color: red;" class="fas fa-times"></i>
+      {% endif %}
+                             </td>
 
-                            </td>
+
+
+
+
                         </tr>
                         {% endfor %}
                     </tbody>

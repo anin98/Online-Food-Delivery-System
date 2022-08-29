@@ -1,0 +1,66 @@
+{% extends 'Customer/base.html' %}
+
+{% block content %}
+{% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col-md-12 mt-5">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Contact</th>
+                             <th scope="col">Delivered</th>
+
+                            <th scope="col">Paid?</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for order in order %}
+                        <tr>
+                            <th scope="row">{{ order.pk }}</th>
+                            <td>{{ order.price }}</td>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.email }}</td>
+                            <td>{{ order.address }}</td>
+                            <td>{{ order.contact }}</td>
+
+                            <td>
+                <form method="POST">
+                                 {% csrf_token %}
+                                  <div class ='form-group pt-3"'>
+                                      <label for="delivered">Yes</label>
+                                      <input type="hidden" name="pk" value="{{ order.pk }}"/>
+                                      <input optional class="form-control" type="checkbox"  name="delivered" value="True"/>
+                     <label for="Delivered">No </label>
+                     <input optional class="form-control" type="checkbox"  name="delivered" value="False"/>
+                      <button type="submit" class="btn btn-red">Submit</button>
+
+
+
+                     </div>
+
+                 </form>
+</td>
+                            <td>
+                                {% if order.payment %}
+                                <i style="color: green;" class="fas fa-check"></i>
+                                {% else %}
+                                <i style="color: red;" class="fas fa-times"></i>
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
